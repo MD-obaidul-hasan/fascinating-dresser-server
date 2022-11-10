@@ -56,7 +56,14 @@ async function run(){
         });
 
         //order api
-        app.get('/orders', async(req, res) =>{
+
+        // app.get('/reviews', async (req, res) => {
+        //     const id = req.query.id;
+        //     const query = { service_id: parseInt(id) };
+        //     const reviews = await reviewsCollection.find(query).toArray();
+        //     res.send(reviews);
+        // });
+        app.get('/review', async(req, res) =>{
             console.log(req.query.email);
             let query = {};
             if(req.query.email){
@@ -69,33 +76,33 @@ async function run(){
             res.send(orders);
         });
 
-        app.post('/orders', async(req, res) =>{
-            const order = req.body;
-            const result = await orderCollection.insertOne(order);
-            res.send(result);
-        });
+        // app.post('/reviews', async(req, res) =>{
+        //     const order = req.body;
+        //     const result = await orderCollection.insertOne(order);
+        //     res.send(result);
+        // });
 
-        app.patch('/ordres/:id', async(req, res) =>{
-            const id = req.params.id;
-            const status = req.body.status
-            const query = {_id: ObjectId(id)}
-            const updatedDoc = {
-                $set:{
-                    status: status
-                }
-            }
-            const result = await orderCollection.updateOne(query, updatedDoc);
-            res.send(result);
-        })
+        // app.patch('/reviews/:id', async(req, res) =>{
+        //     const id = req.params.id;
+        //     const status = req.body.status
+        //     const query = {_id: ObjectId(id)}
+        //     const updatedDoc = {
+        //         $set:{
+        //             status: status
+        //         }
+        //     }
+        //     const result = await orderCollection.updateOne(query, updatedDoc);
+        //     res.send(result);
+        // })
 
-        app.delete('/orders/:id', async(req, res) =>{
-            const id = req.params.id;
+        // app.delete('/reviews/:id', async(req, res) =>{
+        //     const id = req.params.id;
             
-            const query = {_id: ObjectId(id)};
+        //     const query = {_id: ObjectId(id)};
             
-            const result = await orderCollection.deleteOne(query);
-            res.send(result);
-        })
+        //     const result = await orderCollection.deleteOne(query);
+        //     res.send(result);
+        // })
     }
     finally{
 
