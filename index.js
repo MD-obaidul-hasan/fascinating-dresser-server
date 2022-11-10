@@ -63,24 +63,38 @@ async function run(){
         //     const reviews = await reviewsCollection.find(query).toArray();
         //     res.send(reviews);
         // });
-        app.get('/review', async(req, res) =>{
-            console.log(req.query.email);
-            let query = {};
+                    // app.get('/review', async(req, res) =>{
+                    //     console.log(req.query.email);
+                    //     let query = {};
+                    //     if(req.query.email){
+                    //         query = {
+                    //             email: req.query.email
+                    //         }
+                    //     }
+                    //     const cursor = orderCollection.find(query);
+                    //     const orders = await cursor.toArray();
+                    //     res.send(orders);
+                    // });
+        app.get('/orders', async(req, res) =>{
+            // console.log(req.query.email);
+            const query ={};
+
             if(req.query.email){
                 query = {
                     email: req.query.email
                 }
             }
+            
             const cursor = orderCollection.find(query);
             const orders = await cursor.toArray();
             res.send(orders);
-        });
+        });            
 
-        // app.post('/reviews', async(req, res) =>{
-        //     const order = req.body;
-        //     const result = await orderCollection.insertOne(order);
-        //     res.send(result);
-        // });
+        app.post('/orders', async(req, res) =>{
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
+            res.send(result);
+        });
 
         // app.patch('/reviews/:id', async(req, res) =>{
         //     const id = req.params.id;
